@@ -1,0 +1,17 @@
+{
+  "name": "TopSignal AI",
+  "short_name": "TopSignal",
+  "description": "Panel móvil de señales demo para Aviator y Mines.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#050612",
+  "theme_color": "#07081a",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
