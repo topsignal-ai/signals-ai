@@ -1,4 +1,4 @@
-const CACHE_NAME = "topsignal-v1";
+const CACHE_NAME = "topsignal-v2";
 const ASSETS = ["./", "./index.html", "./styles.css", "./app.js", "./manifest.webmanifest", "./assets/icon.svg"];
 
 self.addEventListener("install", (event) => {

@@ -13,7 +13,7 @@
     <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body class="simple-ui">
     <div class="ambient ambient-one" aria-hidden="true"></div>
     <div class="ambient ambient-two" aria-hidden="true"></div>
 
@@ -90,7 +90,6 @@
               <h2 id="welcomeName">Jugador</h2>
               <p>Selecciona un juego para generar una señal.</p>
             </div>
-            <div class="pulse-badge" aria-hidden="true"><span></span></div>
           </section>
 
           <div class="section-heading">
@@ -98,12 +97,10 @@
               <p class="eyebrow">JUEGOS DISPONIBLES</p>
               <h3>Elige tu juego</h3>
             </div>
-            <span class="live-label"><i></i> EN VIVO</span>
           </div>
 
           <div class="game-grid">
             <button class="game-card aviator-card" data-open-game="aviator">
-              <span class="game-glow"></span>
               <span class="game-icon plane-icon" aria-hidden="true">
                 <svg viewBox="0 0 64 64">
                   <path d="m57 29-20-8-9-15-5 1 5 16-13 5-8-6-3 2 7 9-7 9 3 2 8-6 13 5-5 16 5 1 9-15 20-8c4-2 4-6 0-8Z" />
@@ -118,7 +115,6 @@
             </button>
 
             <button class="game-card mines-card" data-open-game="mines">
-              <span class="game-glow"></span>
               <span class="game-icon gem-icon" aria-hidden="true">
                 <svg viewBox="0 0 64 64">
                   <path d="m12 22 10-11h20l10 11-20 31L12 22Z" />
@@ -138,7 +134,7 @@
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20ZM12 11v6M12 7h.01" />
             </svg>
-            <p><strong>Modo demostración</strong> Las señales son aleatorias y no garantizan resultados reales.</p>
+            <p><strong>Modo demostración</strong> Todas las señales se generan al azar.</p>
           </aside>
         </div>
 
@@ -155,51 +151,40 @@
           </div>
 
           <section class="signal-panel" id="aviatorPanel">
-            <div class="history-row" id="aviatorHistory" aria-label="Historial de señales"></div>
-
-            <div class="radar-stage" id="radarStage">
-              <span class="radar-ring ring-one"></span>
-              <span class="radar-ring ring-two"></span>
-              <span class="radar-ring ring-three"></span>
-              <span class="radar-line line-x"></span>
-              <span class="radar-line line-y"></span>
-              <span class="radar-sweep"></span>
-              <svg class="radar-plane" viewBox="0 0 64 64" aria-hidden="true">
+            <div class="simple-game-badge aviator-badge">
+              <svg viewBox="0 0 64 64" aria-hidden="true">
                 <path d="m57 29-20-8-9-15-5 1 5 16-13 5-8-6-3 2 7 9-7 9 3 2 8-6 13 5-5 16 5 1 9-15 20-8c4-2 4-6 0-8Z" />
               </svg>
+              <span>AVIATOR</span>
             </div>
 
             <div class="signal-result">
-              <span>PRÓXIMA SEÑAL</span>
+              <span>SEÑAL ALEATORIA</span>
               <strong id="multiplierValue">X1.00</strong>
-              <p id="aviatorStatus">Pulsa el botón para analizar</p>
+              <p id="aviatorStatus">Valor máximo X2.00</p>
             </div>
 
             <button class="signal-button" id="aviatorButton">
-              <span class="button-copy">GENERAR SEÑAL</span>
+              <span class="button-copy">NUEVA SEÑAL</span>
               <span class="button-loader" aria-hidden="true"></span>
             </button>
           </section>
 
           <section class="signal-panel hidden" id="minesPanel">
-            <div class="risk-selector" aria-label="Cantidad de minas">
-              <span>Minas</span>
-              <div>
-                <button class="risk-button active" data-mines="3">3</button>
-                <button class="risk-button" data-mines="5">5</button>
-                <button class="risk-button" data-mines="7">7</button>
-              </div>
+            <div class="mines-topbar">
+              <strong>MINES</strong>
+              <span>1–2 DIAMANTES</span>
             </div>
 
             <div class="mines-board" id="minesBoard" aria-label="Tablero de Mines"></div>
 
             <div class="mines-message">
               <span>RUTA SUGERIDA</span>
-              <strong id="minesStatus">Pulsa para mostrar casillas</strong>
+              <strong id="minesStatus">Pulsa para revelar</strong>
             </div>
 
             <button class="signal-button mines-button" id="minesButton">
-              <span class="button-copy">GENERAR SEÑAL</span>
+              <span class="button-copy">NUEVA SEÑAL</span>
               <span class="button-loader" aria-hidden="true"></span>
             </button>
           </section>

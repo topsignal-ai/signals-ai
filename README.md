@@ -6,8 +6,8 @@ Aplicación web móvil en español con acceso por ID y señales demostrativas pa
 
 - Acceso con cualquier ID no vacío.
 - Menú móvil para elegir Aviator o Mines.
-- Generador visual de multiplicadores demo.
-- Tablero Mines con selección de riesgo y casillas sugeridas.
+- Generador aleatorio de multiplicadores demo entre X1.00 y X2.00.
+- Tablero Mines 5×5 con una o dos casillas sugeridas al azar.
 - Diseño adaptable, instalable como PWA y disponible sin conexión.
 - Sin servidor, base de datos ni recopilación de datos personales.
 

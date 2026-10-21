@@ -1016,3 +1016,203 @@ input:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Simplified mobile theme */
+body.simple-ui {
+  background: #0b0c0e;
+}
+
+body.simple-ui::before,
+.simple-ui .ambient {
+  display: none;
+}
+
+.simple-ui .app-shell {
+  background: #0b0c0e;
+}
+
+.simple-ui .login-card,
+.simple-ui .welcome-card,
+.simple-ui .game-card,
+.simple-ui .signal-panel {
+  border-color: #2b2d31;
+  background: #15171a;
+  box-shadow: none;
+}
+
+.simple-ui .app-header {
+  border-bottom-color: #24262a;
+  background: #0e0f11;
+  backdrop-filter: none;
+}
+
+.simple-ui .welcome-card {
+  min-height: 112px;
+  padding: 20px;
+}
+
+.simple-ui .welcome-card::after,
+.simple-ui .game-glow {
+  display: none;
+}
+
+.simple-ui .section-heading {
+  margin-top: 24px;
+}
+
+.simple-ui .game-card {
+  min-height: 105px;
+  padding: 14px;
+  gap: 14px;
+}
+
+.simple-ui .game-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  box-shadow: none;
+}
+
+.simple-ui .game-meta strong {
+  font-size: 1.45rem;
+}
+
+.simple-ui .info-banner {
+  border-color: #24262a;
+  background: #111214;
+}
+
+.simple-ui .signal-panel {
+  padding: 16px;
+  background: #15171a;
+}
+
+.simple-game-badge {
+  min-height: 122px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid #292b30;
+  border-radius: 16px;
+  background: #101114;
+}
+
+.simple-game-badge svg {
+  width: 58px;
+  fill: #ff4f72;
+  filter: drop-shadow(0 0 10px rgba(255, 79, 114, 0.35));
+  transform: rotate(-12deg);
+}
+
+.simple-game-badge span {
+  color: #ff708a;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.09em;
+}
+
+.simple-ui .signal-result {
+  margin-bottom: 22px;
+}
+
+.simple-ui .signal-result strong {
+  margin: 8px 0;
+  color: #fff;
+  font-size: clamp(3.7rem, 19vw, 5.2rem);
+  text-shadow: none;
+}
+
+.simple-ui .signal-button {
+  background: #ed385f;
+  box-shadow: none;
+}
+
+.simple-ui .mines-button {
+  background: #239ba3;
+}
+
+.mines-topbar {
+  min-height: 46px;
+  margin-bottom: 14px;
+  padding: 0 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #3a3427;
+  border-radius: 9px;
+  background: #1d1a14;
+}
+
+.mines-topbar strong {
+  color: #ff713f;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  letter-spacing: 0.08em;
+}
+
+.mines-topbar span {
+  color: #a9aaa7;
+  font-size: 0.63rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.simple-ui .mines-board {
+  width: min(80vw, 336px);
+  margin: 8px auto 22px;
+  gap: 7px;
+}
+
+.simple-ui .mine-cell {
+  border: 1px solid #373a38;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #323632, #202320);
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.06),
+    inset -2px -2px 5px rgba(0, 0, 0, 0.32);
+}
+
+.simple-ui .mine-cell::before {
+  display: none;
+}
+
+.simple-ui .mine-cell.safe {
+  color: #aefaff;
+  border-color: #75e4e8;
+  background: #293d3d;
+  box-shadow: inset 0 0 0 1px rgba(117, 228, 232, 0.28), 0 0 12px rgba(117, 228, 232, 0.25);
+  transform: none;
+}
+
+.simple-ui .mine-cell.safe::before {
+  width: auto;
+  height: auto;
+  display: block;
+  content: "◆";
+  color: #b9fbff;
+  background: transparent;
+  font-size: 1.25rem;
+  filter: drop-shadow(0 0 6px #62e3e8);
+}
+
+.simple-ui .bottom-nav {
+  border-top-color: #24262a;
+  background: #101114;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.simple-ui .nav-item.active {
+  color: #fff;
+  background: #292d91;
+  box-shadow: none;
+}
+
+@media (min-width: 520px) {
+  .simple-ui .app-shell {
+    border-color: #27292d;
+    background: #0b0c0e;
+  }
+}

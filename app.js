@@ -14,15 +14,11 @@ const aviatorButton = document.querySelector("#aviatorButton");
 const minesButton = document.querySelector("#minesButton");
 const multiplierValue = document.querySelector("#multiplierValue");
 const aviatorStatus = document.querySelector("#aviatorStatus");
-const aviatorHistory = document.querySelector("#aviatorHistory");
-const radarStage = document.querySelector("#radarStage");
 const minesBoard = document.querySelector("#minesBoard");
 const minesStatus = document.querySelector("#minesStatus");
 
 const state = {
   currentGame: "aviator",
-  mines: 3,
-  history: ["X1.44", "X2.18", "X1.09", "X3.76", "X1.62"],
 };
 
 function secureRandom() {
@@ -75,25 +71,8 @@ function openGame(game) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function renderHistory() {
-  aviatorHistory.replaceChildren();
-  state.history.slice(0, 5).forEach((value) => {
-    const chip = document.createElement("span");
-    chip.className = "history-chip";
-    chip.textContent = value;
-    aviatorHistory.appendChild(chip);
-  });
-}
-
 function generateMultiplier() {
-  const roll = secureRandom();
-  let value;
-
-  if (roll < 0.63) value = 1.1 + secureRandom() * 1.4;
-  else if (roll < 0.9) value = 2.5 + secureRandom() * 3.5;
-  else if (roll < 0.985) value = 6 + secureRandom() * 9;
-  else value = 15 + secureRandom() * 10;
-
+  const value = (100 + Math.floor(secureRandom() * 101)) / 100;
   return `X${value.toFixed(2)}`;
 }
 
@@ -105,23 +84,20 @@ function setLoading(button, loading) {
 
 function runAviatorSignal() {
   setLoading(aviatorButton, true);
-  radarStage.classList.add("scanning");
-  aviatorStatus.textContent = "Analizando la siguiente ronda…";
+  aviatorPanel.classList.add("is-loading");
+  aviatorStatus.textContent = "Generando…";
   multiplierValue.textContent = "—";
 
   window.setTimeout(() => {
     const result = generateMultiplier();
-    state.history.unshift(result);
-    state.history = state.history.slice(0, 5);
-    renderHistory();
     multiplierValue.textContent = result;
     multiplierValue.classList.remove("result-pop");
     void multiplierValue.offsetWidth;
     multiplierValue.classList.add("result-pop");
-    aviatorStatus.textContent = "Señal demo generada";
-    radarStage.classList.remove("scanning");
+    aviatorStatus.textContent = "Señal aleatoria";
+    aviatorPanel.classList.remove("is-loading");
     setLoading(aviatorButton, false);
-  }, 1450);
+  }, 700);
 }
 
 function buildMinesBoard() {
@@ -153,7 +129,7 @@ function runMinesSignal() {
   document.querySelectorAll(".mine-cell").forEach((cell) => cell.classList.remove("safe"));
 
   window.setTimeout(() => {
-    const safeCount = state.mines === 3 ? 5 : state.mines === 5 ? 4 : 3;
+    const safeCount = secureRandom() < 0.5 ? 1 : 2;
     const selected = chooseUniqueCells(safeCount);
     const cells = [...document.querySelectorAll(".mine-cell")];
 
@@ -163,7 +139,7 @@ function runMinesSignal() {
 
     minesStatus.textContent = `${safeCount} casillas sugeridas`;
     setLoading(minesButton, false);
-  }, 950);
+  }, 650);
 }
 
 loginForm.addEventListener("submit", (event) => {
@@ -200,17 +176,6 @@ document.querySelectorAll("[data-nav]").forEach((button) => {
   });
 });
 
-document.querySelectorAll("[data-mines]").forEach((button) => {
-  button.addEventListener("click", () => {
-    state.mines = Number(button.dataset.mines);
-    document.querySelectorAll("[data-mines]").forEach((item) => item.classList.remove("active"));
-    button.classList.add("active");
-    document.querySelectorAll(".mine-cell").forEach((cell) => cell.classList.remove("safe"));
-    minesStatus.textContent = "Pulsa para mostrar casillas";
-  });
-});
-
-renderHistory();
 buildMinesBoard();
 
 const savedPlayer = sessionStorage.getItem("topsignal-player");
