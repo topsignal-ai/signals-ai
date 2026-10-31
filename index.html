@@ -1,17 +1,17 @@
 <!doctype html>
-<html lang="es">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#07081a" />
     <meta
       name="description"
-      content="GPT Signal: panel móvil de señales demo para Aviator, Mines y Chicken Road."
+      content="GPT Signal: демонстрационные сигналы для Aviator, Mines и Chicken Road."
     />
     <title>GPT Signal</title>
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css?v=5" />
+    <link rel="stylesheet" href="styles.css?v=6" />
   </head>
   <body class="redesign">
     <div class="ambient ambient-one" aria-hidden="true"></div>
@@ -32,7 +32,7 @@
 
         <form class="login-card" id="loginForm" novalidate>
           
-          <label for="playerId">ID de jugador de 1xBet</label>
+          <label for="playerId">ID игрока 1xBet</label>
           <div class="input-wrap">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7 8a7 7 0 0 0-14 0" />
@@ -43,14 +43,14 @@
               type="text"
               inputmode="text"
               autocomplete="off"
-              placeholder="Introduce tu ID de 1xBet"
+              placeholder="Введите свой ID из 1xBet"
               maxlength="32"
               required
             />
           </div>
           <p class="field-error" id="loginError" role="alert"></p>
           <button class="primary-button" type="submit">
-            <span>ENTRAR</span>
+            <span>ВОЙТИ</span>
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="m9 5 7 7-7 7" />
             </svg>
@@ -58,10 +58,10 @@
           
         </form>
 
-        <aside class="access-note"><strong>Condiciones de acceso</strong><p>ID de 1xBet registrado previamente con tu gestor y saldo real en la cuenta.</p><small>Esta demo no verifica el ID ni el saldo y no predice resultados reales.</small></aside><p class="age-note"><strong>18+</strong> Juega con responsabilidad</p>
+        <aside class="access-note"><strong>Условия доступа</strong><p>ID 1xBet, ранее зарегистрированный у менеджера, и реальный баланс на счёте.</p><small>Демонстрация не проверяет ID и баланс и не предсказывает реальные результаты.</small></aside><p class="age-note"><strong>18+</strong> Играйте ответственно</p>
       </section>
 
-      <section class="dashboard hidden" id="dashboard" aria-label="Panel de señales">
+      <section class="dashboard hidden" id="dashboard" aria-label="Панель сигналов">
         <header class="app-header">
           <div class="mini-brand">
             <div class="brand-mark" aria-hidden="true">
@@ -73,7 +73,7 @@
               
             </div>
           </div>
-          <button class="icon-button" id="logoutButton" aria-label="Cerrar sesión" title="Cerrar sesión">
+          <button class="icon-button" id="logoutButton" aria-label="Выйти" title="Выйти">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M10 5H5v14h5M14 8l4 4-4 4M18 12H9" />
             </svg>
@@ -84,15 +84,15 @@
           <section class="welcome-card hidden">
             <div>
               
-              <h2 id="welcomeName">Jugador</h2>
-              <p>Selecciona un juego para generar una señal.</p>
+              <h2 id="welcomeName">Игрок</h2>
+              <p>Выберите игру для генерации сигнала.</p>
             </div>
           </section>
 
           <div class="section-heading">
             <div>
               
-              <h3>Elige tu juego</h3>
+              <h3>Выберите игру</h3>
             </div>
           </div>
 
@@ -122,12 +122,12 @@
             </button>
 <button class="game-card chicken-card" data-open-game="chicken"><span class="game-icon chicken-icon"><svg viewBox="0 0 80 80" aria-hidden="true"><path d="M31 58v12m16-12v12M25 71h13m4 0h13" stroke="#ffa52e" stroke-width="5" stroke-linecap="round"/><path d="M27 30q-9-17 3-15l6 8q-1-22 9-17l2 17q13-14 16-3l-9 12" fill="#ff6365"/><path d="M56 36 72 43l-17 6" fill="#ffba45"/><path d="M20 34Q8 29 9 39l9 8q-2 20 24 19 21-2 20-23-1-19-19-19-15 0-23 10Z" fill="#fff5df"/><path d="M22 45q13-7 18 5-7 14-18 0" fill="#ddcdb5"/><circle cx="50" cy="36" r="4" fill="#172034"/></svg></span><span class="game-meta"><strong>CHICKEN ROAD</strong></span><span class="card-arrow">→</span></button></div>
 
-          <p class="demo-note">Demo · Señales aleatorias.</p>
+          <p class="demo-note">Демо · Случайные сигналы.</p>
         </div>
 
         <div class="screen" id="signalsScreen" data-screen="signals">
           <div class="signal-toolbar">
-            <button class="back-button" id="backButton" aria-label="Volver al menú">
+            <button class="back-button" id="backButton" aria-label="Вернуться в меню">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
             </button>
             <div>
@@ -137,7 +137,7 @@
             
           </div>
 
-          <section class="signal-panel" id="aviatorPanel"><details class="game-help"><summary>Cómo jugar</summary><p>Antes de la ronda, elige el importe. El multiplicador sube durante el vuelo: «Cash Out» cobra antes de que termine. Si el avión se va antes, pierdes la apuesta.</p><p class="help-note">La señal de esta app es aleatoria y no indica cuándo cobrar ni qué casillas abrir.</p></details>
+          <section class="signal-panel" id="aviatorPanel"><details class="game-help"><summary>Как играть</summary><p>До начала раунда выберите сумму ставки. Во время полёта множитель растёт. Кнопка «Забрать» (Cash Out) фиксирует выигрыш до конца полёта. Если самолёт улетит раньше, ставка проиграет.</p><p class="help-note">Сигналы приложения случайны: они не подсказывают, когда забирать выигрыш и какие клетки открывать.</p></details>
             <div class="panel-heading"><span class="game-wordmark">Aviator</span></div><div class="flight-stage"><div class="flight-grid"></div><svg class="flight-curve" viewBox="0 0 400 220" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="flightFill" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f33d59" stop-opacity=".35"/><stop offset="1" stop-color="#f33d59" stop-opacity="0"/></linearGradient></defs><path d="M15 205Q210 202 345 52L345 220H15Z" fill="url(#flightFill)"/><path d="M15 205Q210 202 345 52" fill="none" stroke="#ff3e59" stroke-width="4"/></svg><div class="flight-plane"><svg viewBox="0 0 120 80" aria-hidden="true"><g fill="currentColor"><path d="M12 48 92 40 105 45 98 51 20 55Z"/><path d="m48 46 20-31 13 1-10 30ZM48 51l24 18 13-1-18-20ZM14 49 6 30l10 2 17 18Z"/><rect x="103" y="28" width="3" height="36" rx="2"/></g><path d="M35 37h51M45 35v13M76 35v10" stroke="currentColor" stroke-width="4"/><path d="M83 40q4-12 12-4" fill="#a9dbef"/><circle cx="40" cy="57" r="4" fill="#adb6ca"/></svg></div></div>
 
             <div class="signal-result" aria-live="polite">
@@ -147,18 +147,18 @@
             </div>
 
             <button class="signal-button" id="aviatorButton">
-              <span class="button-copy">GENERAR SEÑAL</span>
+              <span class="button-copy">ПОЛУЧИТЬ СИГНАЛ</span>
               <span class="button-loader" aria-hidden="true"></span>
             </button>
           </section>
 
-          <section class="signal-panel hidden" id="minesPanel"><details class="game-help"><summary>Cómo jugar</summary><p>Elige el importe y la cantidad de minas. Abre casillas: un diamante aumenta el premio; una mina pierde la apuesta. «Cash Out» termina la ronda y cobra.</p><p class="help-note">La señal de esta app es aleatoria y no indica cuándo cobrar ni qué casillas abrir.</p></details>
+          <section class="signal-panel hidden" id="minesPanel"><details class="game-help"><summary>Как играть</summary><p>Выберите сумму ставки и число мин. Открывайте клетки: алмаз увеличивает выигрыш, мина приводит к проигрышу ставки. Кнопка «Забрать» (Cash Out) завершает раунд и фиксирует выигрыш.</p><p class="help-note">Сигналы приложения случайны: они не подсказывают, когда забирать выигрыш и какие клетки открывать.</p></details>
             <div class="mines-topbar">
               <strong>MINES</strong>
-              <span>1–2 DIAMANTES</span>
+              <span>1–2 АЛМАЗА</span>
             </div>
 
-            <div class="mines-board" id="minesBoard" aria-label="Tablero de Mines"></div>
+            <div class="mines-board" id="minesBoard" aria-label="Поле Mines"></div>
 
             <div class="mines-message">
               
@@ -166,16 +166,16 @@
             </div>
 
             <button class="signal-button mines-button" id="minesButton">
-              <span class="button-copy">GENERAR SEÑAL</span>
+              <span class="button-copy">ПОЛУЧИТЬ СИГНАЛ</span>
               <span class="button-loader" aria-hidden="true"></span>
             </button>
           </section>
 
-<section class="signal-panel hidden" id="chickenPanel"><details class="game-help"><summary>Cómo jugar</summary><p>Elige el importe y la dificultad. Avanza paso a paso: cada cruce aumenta el premio. Puedes cobrar antes de continuar; si el pollo pierde, pierdes la apuesta.</p><p class="help-note">La señal de esta app es aleatoria y no indica cuándo cobrar ni qué casillas abrir.</p></details><div class="panel-heading"><strong>Chicken Road</strong></div><div class="road-scene"><div class="road-finish">META</div><div class="road-track" id="roadTrack"><div id="roadChicken" class="road-chicken"><svg viewBox="0 0 80 80" aria-hidden="true"><path d="M31 58v12m16-12v12M25 71h13m4 0h13" stroke="#ffa52e" stroke-width="5" stroke-linecap="round"/><path d="M27 30q-9-17 3-15l6 8q-1-22 9-17l2 17q13-14 16-3l-9 12" fill="#ff6365"/><path d="M56 36 72 43l-17 6" fill="#ffba45"/><path d="M20 34Q8 29 9 39l9 8q-2 20 24 19 21-2 20-23-1-19-19-19-15 0-23 10Z" fill="#fff5df"/><path d="M22 45q13-7 18 5-7 14-18 0" fill="#ddcdb5"/><circle cx="50" cy="36" r="4" fill="#172034"/></svg></div></div></div><div class="signal-result" aria-live="polite"><strong id="chickenValue">—</strong><p id="chickenStatus"></p></div><button class="signal-button chicken-button" id="chickenButton"><span class="button-copy">GENERAR RUTA</span><span class="button-loader" aria-hidden="true"></span></button></section><p class="demo-note">Demo · Señales aleatorias.</p></div>
-        <p id="cooldownStatus" class="demo-note" role="status"></p><nav class="bottom-nav" aria-label="Navegación principal">
+<section class="signal-panel hidden" id="chickenPanel"><details class="game-help"><summary>Как играть</summary><p>Выберите сумму ставки и сложность. Продвигайтесь по одному шагу: каждый успешный переход увеличивает выигрыш. Его можно забрать до следующего шага. Если курица проиграет, ставка сгорит.</p><p class="help-note">Сигналы приложения случайны: они не подсказывают, когда забирать выигрыш и какие клетки открывать.</p></details><div class="panel-heading"><strong>Chicken Road</strong></div><div class="road-scene"><div class="road-finish">ФИНИШ</div><div class="road-track" id="roadTrack"><div id="roadChicken" class="road-chicken"><svg viewBox="0 0 80 80" aria-hidden="true"><path d="M31 58v12m16-12v12M25 71h13m4 0h13" stroke="#ffa52e" stroke-width="5" stroke-linecap="round"/><path d="M27 30q-9-17 3-15l6 8q-1-22 9-17l2 17q13-14 16-3l-9 12" fill="#ff6365"/><path d="M56 36 72 43l-17 6" fill="#ffba45"/><path d="M20 34Q8 29 9 39l9 8q-2 20 24 19 21-2 20-23-1-19-19-19-15 0-23 10Z" fill="#fff5df"/><path d="M22 45q13-7 18 5-7 14-18 0" fill="#ddcdb5"/><circle cx="50" cy="36" r="4" fill="#172034"/></svg></div></div></div><div class="signal-result" aria-live="polite"><strong id="chickenValue">—</strong><p id="chickenStatus"></p></div><button class="signal-button chicken-button" id="chickenButton"><span class="button-copy">ПОЛУЧИТЬ МАРШРУТ</span><span class="button-loader" aria-hidden="true"></span></button></section><p class="demo-note">Демо · Случайные сигналы.</p></div>
+        <p id="cooldownStatus" class="demo-note" role="status"></p><nav class="bottom-nav" aria-label="Основная навигация">
           <button class="nav-item active" data-nav="home">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8v10h-6v-6H9v6H3V11Z" /></svg>
-            <span>Inicio</span>
+            <span>Главная</span>
           </button>
           <button class="nav-item" data-nav="aviator">
             <svg viewBox="0 0 120 80" aria-hidden="true"><g fill="currentColor"><path d="M12 48 92 40 105 45 98 51 20 55Z"/><path d="m48 46 20-31 13 1-10 30ZM48 51l24 18 13-1-18-20ZM14 49 6 30l10 2 17 18Z"/><rect x="103" y="28" width="3" height="36" rx="2"/></g><path d="M35 37h51M45 35v13M76 35v10" stroke="currentColor" stroke-width="4"/><path d="M83 40q4-12 12-4" fill="#a9dbef"/><circle cx="40" cy="57" r="4" fill="#adb6ca"/></svg>
@@ -189,6 +189,6 @@
       </section>
     </main>
 
-    <script src="app.js?v=5"></script>
+    <script src="app.js?v=6"></script>
   </body>
 </html>

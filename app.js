@@ -93,10 +93,10 @@ function syncCooldown() {
   signalButtons.forEach((button, index) => {
     button.disabled = generating || remaining > 0;
     if (!button.classList.contains("loading")) {
-      button.querySelector(".button-copy").textContent = remaining ? `ESPERA ${remaining} s` : cooldownLabels[index];
+      button.querySelector(".button-copy").textContent = remaining ? `ПОДОЖДИТЕ ${remaining} с` : cooldownLabels[index];
     }
   });
-  cooldownStatus.textContent = remaining ? `Próxima señal en ${remaining} s` : "";
+  cooldownStatus.textContent = remaining ? `Следующий сигнал через ${remaining} с` : "";
 }
 window.setInterval(syncCooldown, 250);
 syncCooldown();
@@ -116,7 +116,7 @@ function runAviatorSignal() {
   if (aviatorButton.disabled) return;
   setLoading(aviatorButton, true);
   aviatorPanel.classList.add("is-loading");
-  aviatorStatus.textContent = "Generando…";
+  aviatorStatus.textContent = "Создаём сигнал…";
   multiplierValue.textContent = "—";
 
   window.setTimeout(() => {
@@ -125,7 +125,7 @@ function runAviatorSignal() {
     multiplierValue.classList.remove("result-pop");
     void multiplierValue.offsetWidth;
     multiplierValue.classList.add("result-pop");
-    aviatorStatus.textContent = "Señal aleatoria";
+    aviatorStatus.textContent = "Случайный сигнал";
     aviatorPanel.classList.remove("is-loading");
     setLoading(aviatorButton, false);
   }, 700);
@@ -138,7 +138,7 @@ function buildMinesBoard() {
     cell.className = "mine-cell";
     cell.dataset.cell = String(index + 1);
     cell.textContent = String(index + 1);
-    cell.setAttribute("aria-label", `Casilla ${index + 1}`);
+    cell.setAttribute("aria-label", `Клетка ${index + 1}`);
     minesBoard.appendChild(cell);
   }
 }
@@ -158,21 +158,21 @@ function chooseUniqueCells(amount) {
 function runMinesSignal() {
   if (minesButton.disabled) return;
   setLoading(minesButton, true);
-  minesStatus.textContent = "Generando casillas…";
+  minesStatus.textContent = "Выбираем клетки…";
   const cells = [...minesBoard.children];
   cells.forEach((cell, index) => {
     cell.classList.remove("safe");
     cell.textContent = String(index + 1);
-    cell.setAttribute("aria-label", `Casilla ${index + 1}`);
+    cell.setAttribute("aria-label", `Клетка ${index + 1}`);
   });
   window.setTimeout(() => {
     const selected = chooseUniqueCells(secureRandom() < 0.5 ? 1 : 2).sort((a,b) => a-b);
     selected.forEach(index => {
       cells[index].classList.add("safe");
       cells[index].innerHTML = gemMarkup + `<span class="cell-number">${index + 1}</span>`;
-      cells[index].setAttribute("aria-label", `Casilla ${index + 1}: diamante de demostración`);
+      cells[index].setAttribute("aria-label", `Клетка ${index + 1}: демонстрационный алмаз`);
     });
-    minesStatus.textContent = `Casillas: ${selected.map(index => index + 1).join(" y ")} · ${selected.length} diamante${selected.length > 1 ? "s" : ""}`;
+    minesStatus.textContent = `Клетки: ${selected.map(index => index + 1).join(" и ")} · ${selected.length} ${selected.length === 1 ? "алмаз" : "алмаза"}`;
     setLoading(minesButton, false);
   }, 650);
 }
@@ -181,15 +181,15 @@ function runChickenSignal() {
   if (chickenButton.disabled) return;
   setLoading(chickenButton, true);
   chickenValue.textContent = "—";
-  chickenStatus.textContent = "Generando ruta…";
+  chickenStatus.textContent = "Создаём маршрут…";
   roadChicken.style.left = "0%";
   document.querySelectorAll(".road-step").forEach(step => step.classList.remove("reached"));
   window.setTimeout(() => {
     const steps = 1 + Math.floor(secureRandom() * 5);
     roadChicken.style.left = `${(steps - 1) * 20 + 1}%`;
     document.querySelectorAll(".road-step").forEach((step, index) => step.classList.toggle("reached", index < steps));
-    chickenValue.textContent = `${steps} ${steps === 1 ? "paso" : "pasos"}`;
-    chickenStatus.textContent = `Ruta aleatoria hasta el paso ${steps} de 5`;
+    chickenValue.textContent = `${steps} ${steps === 1 ? "шаг" : steps < 5 ? "шага" : "шагов"}`;
+    chickenStatus.textContent = `Случайный маршрут: шаг ${steps} из 5`;
     setLoading(chickenButton, false);
   }, 700);
 }
@@ -197,7 +197,7 @@ for (let i = 1; i <= 5; i++) {
   const step = document.createElement("span");
   step.className = "road-step";
   step.textContent = i;
-  step.setAttribute("aria-label", `Paso ${i}`);
+  step.setAttribute("aria-label", `Шаг ${i}`);
   document.querySelector("#roadTrack").appendChild(step);
 }
 chickenButton.addEventListener("click", runChickenSignal);
@@ -207,7 +207,7 @@ loginForm.addEventListener("submit", (event) => {
   const playerId = playerIdInput.value.trim();
 
   if (!playerId) {
-    loginError.textContent = "Introduce tu ID de jugador de 1xBet para continuar.";
+    loginError.textContent = "Introduce tu ID игрока 1xBet para continuar.";
     playerIdInput.focus();
     return;
   }
