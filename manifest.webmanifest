@@ -1,7 +1,7 @@
 {
   "name": "GPT Signal",
   "short_name": "GPT Signal",
-  "description": "Демонстрационные сигналы для Aviator, Mines и Chicken Road.",
+  "description": "GPT Signal — Aviator, Mines и Chicken Road.",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#050612",
