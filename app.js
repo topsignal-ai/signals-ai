@@ -207,7 +207,7 @@ loginForm.addEventListener("submit", (event) => {
   const playerId = playerIdInput.value.trim();
 
   if (!playerId) {
-    loginError.textContent = "Introduce tu ID игрока 1xBet para continuar.";
+    loginError.textContent = "Введите свой ID игрока 1xBet для продолжения.";
     playerIdInput.focus();
     return;
   }
