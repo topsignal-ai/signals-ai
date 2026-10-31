@@ -125,7 +125,7 @@ function runAviatorSignal() {
     multiplierValue.classList.remove("result-pop");
     void multiplierValue.offsetWidth;
     multiplierValue.classList.add("result-pop");
-    aviatorStatus.textContent = "Случайный сигнал";
+    aviatorStatus.textContent = "Готово";
     aviatorPanel.classList.remove("is-loading");
     setLoading(aviatorButton, false);
   }, 700);
@@ -170,7 +170,7 @@ function runMinesSignal() {
     selected.forEach(index => {
       cells[index].classList.add("safe");
       cells[index].innerHTML = gemMarkup + `<span class="cell-number">${index + 1}</span>`;
-      cells[index].setAttribute("aria-label", `Клетка ${index + 1}: демонстрационный алмаз`);
+      cells[index].setAttribute("aria-label", `Клетка ${index + 1}: алмаз`);
     });
     minesStatus.textContent = `Клетки: ${selected.map(index => index + 1).join(" и ")} · ${selected.length} ${selected.length === 1 ? "алмаз" : "алмаза"}`;
     setLoading(minesButton, false);
@@ -189,7 +189,7 @@ function runChickenSignal() {
     roadChicken.style.left = `${(steps - 1) * 20 + 1}%`;
     document.querySelectorAll(".road-step").forEach((step, index) => step.classList.toggle("reached", index < steps));
     chickenValue.textContent = `${steps} ${steps === 1 ? "шаг" : steps < 5 ? "шага" : "шагов"}`;
-    chickenStatus.textContent = `Случайный маршрут: шаг ${steps} из 5`;
+    chickenStatus.textContent = `Маршрут: шаг ${steps} из 5`;
     setLoading(chickenButton, false);
   }, 700);
 }
