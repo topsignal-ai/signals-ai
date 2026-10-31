@@ -1,4 +1,4 @@
-# TopSignal AI
+# GPT Signal
 
 Aplicación web móvil en español con acceso por ID y señales demostrativas para Aviator, Mines y Chicken Road.
 

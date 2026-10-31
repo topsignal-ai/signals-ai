@@ -1,6 +1,6 @@
 {
-  "name": "TopSignal AI",
-  "short_name": "TopSignal",
+  "name": "GPT Signal",
+  "short_name": "GPT Signal",
   "description": "Panel móvil de señales demo para Aviator, Mines y Chicken Road.",
   "start_url": "./",
   "display": "standalone",
