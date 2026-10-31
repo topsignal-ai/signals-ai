@@ -11,7 +11,7 @@
     <title>GPT Signal</title>
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css?v=4" />
+    <link rel="stylesheet" href="styles.css?v=5" />
   </head>
   <body class="redesign">
     <div class="ambient ambient-one" aria-hidden="true"></div>
@@ -58,7 +58,7 @@
           
         </form>
 
-        <p class="age-note"><strong>18+</strong> Juega con responsabilidad</p>
+        <aside class="access-note"><strong>Condiciones de acceso</strong><p>ID de 1xBet registrado previamente con tu gestor y saldo real en la cuenta.</p><small>Esta demo no verifica el ID ni el saldo y no predice resultados reales.</small></aside><p class="age-note"><strong>18+</strong> Juega con responsabilidad</p>
       </section>
 
       <section class="dashboard hidden" id="dashboard" aria-label="Panel de señales">
@@ -137,7 +137,7 @@
             
           </div>
 
-          <section class="signal-panel" id="aviatorPanel">
+          <section class="signal-panel" id="aviatorPanel"><details class="game-help"><summary>Cómo jugar</summary><p>Antes de la ronda, elige el importe. El multiplicador sube durante el vuelo: «Cash Out» cobra antes de que termine. Si el avión se va antes, pierdes la apuesta.</p><p class="help-note">La señal de esta app es aleatoria y no indica cuándo cobrar ni qué casillas abrir.</p></details>
             <div class="panel-heading"><span class="game-wordmark">Aviator</span></div><div class="flight-stage"><div class="flight-grid"></div><svg class="flight-curve" viewBox="0 0 400 220" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="flightFill" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f33d59" stop-opacity=".35"/><stop offset="1" stop-color="#f33d59" stop-opacity="0"/></linearGradient></defs><path d="M15 205Q210 202 345 52L345 220H15Z" fill="url(#flightFill)"/><path d="M15 205Q210 202 345 52" fill="none" stroke="#ff3e59" stroke-width="4"/></svg><div class="flight-plane"><svg viewBox="0 0 120 80" aria-hidden="true"><g fill="currentColor"><path d="M12 48 92 40 105 45 98 51 20 55Z"/><path d="m48 46 20-31 13 1-10 30ZM48 51l24 18 13-1-18-20ZM14 49 6 30l10 2 17 18Z"/><rect x="103" y="28" width="3" height="36" rx="2"/></g><path d="M35 37h51M45 35v13M76 35v10" stroke="currentColor" stroke-width="4"/><path d="M83 40q4-12 12-4" fill="#a9dbef"/><circle cx="40" cy="57" r="4" fill="#adb6ca"/></svg></div></div>
 
             <div class="signal-result" aria-live="polite">
@@ -152,7 +152,7 @@
             </button>
           </section>
 
-          <section class="signal-panel hidden" id="minesPanel">
+          <section class="signal-panel hidden" id="minesPanel"><details class="game-help"><summary>Cómo jugar</summary><p>Elige el importe y la cantidad de minas. Abre casillas: un diamante aumenta el premio; una mina pierde la apuesta. «Cash Out» termina la ronda y cobra.</p><p class="help-note">La señal de esta app es aleatoria y no indica cuándo cobrar ni qué casillas abrir.</p></details>
             <div class="mines-topbar">
               <strong>MINES</strong>
               <span>1–2 DIAMANTES</span>
@@ -171,8 +171,8 @@
             </button>
           </section>
 
-<section class="signal-panel hidden" id="chickenPanel"><div class="panel-heading"><strong>Chicken Road</strong></div><div class="road-scene"><div class="road-finish">META</div><div class="road-track" id="roadTrack"><div id="roadChicken" class="road-chicken"><svg viewBox="0 0 80 80" aria-hidden="true"><path d="M31 58v12m16-12v12M25 71h13m4 0h13" stroke="#ffa52e" stroke-width="5" stroke-linecap="round"/><path d="M27 30q-9-17 3-15l6 8q-1-22 9-17l2 17q13-14 16-3l-9 12" fill="#ff6365"/><path d="M56 36 72 43l-17 6" fill="#ffba45"/><path d="M20 34Q8 29 9 39l9 8q-2 20 24 19 21-2 20-23-1-19-19-19-15 0-23 10Z" fill="#fff5df"/><path d="M22 45q13-7 18 5-7 14-18 0" fill="#ddcdb5"/><circle cx="50" cy="36" r="4" fill="#172034"/></svg></div></div></div><div class="signal-result" aria-live="polite"><strong id="chickenValue">—</strong><p id="chickenStatus"></p></div><button class="signal-button chicken-button" id="chickenButton"><span class="button-copy">GENERAR RUTA</span><span class="button-loader" aria-hidden="true"></span></button></section><p class="demo-note">Demo · Señales aleatorias.</p></div>
-        <nav class="bottom-nav" aria-label="Navegación principal">
+<section class="signal-panel hidden" id="chickenPanel"><details class="game-help"><summary>Cómo jugar</summary><p>Elige el importe y la dificultad. Avanza paso a paso: cada cruce aumenta el premio. Puedes cobrar antes de continuar; si el pollo pierde, pierdes la apuesta.</p><p class="help-note">La señal de esta app es aleatoria y no indica cuándo cobrar ni qué casillas abrir.</p></details><div class="panel-heading"><strong>Chicken Road</strong></div><div class="road-scene"><div class="road-finish">META</div><div class="road-track" id="roadTrack"><div id="roadChicken" class="road-chicken"><svg viewBox="0 0 80 80" aria-hidden="true"><path d="M31 58v12m16-12v12M25 71h13m4 0h13" stroke="#ffa52e" stroke-width="5" stroke-linecap="round"/><path d="M27 30q-9-17 3-15l6 8q-1-22 9-17l2 17q13-14 16-3l-9 12" fill="#ff6365"/><path d="M56 36 72 43l-17 6" fill="#ffba45"/><path d="M20 34Q8 29 9 39l9 8q-2 20 24 19 21-2 20-23-1-19-19-19-15 0-23 10Z" fill="#fff5df"/><path d="M22 45q13-7 18 5-7 14-18 0" fill="#ddcdb5"/><circle cx="50" cy="36" r="4" fill="#172034"/></svg></div></div></div><div class="signal-result" aria-live="polite"><strong id="chickenValue">—</strong><p id="chickenStatus"></p></div><button class="signal-button chicken-button" id="chickenButton"><span class="button-copy">GENERAR RUTA</span><span class="button-loader" aria-hidden="true"></span></button></section><p class="demo-note">Demo · Señales aleatorias.</p></div>
+        <p id="cooldownStatus" class="demo-note" role="status"></p><nav class="bottom-nav" aria-label="Navegación principal">
           <button class="nav-item active" data-nav="home">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8v10h-6v-6H9v6H3V11Z" /></svg>
             <span>Inicio</span>
@@ -189,6 +189,6 @@
       </section>
     </main>
 
-    <script src="app.js?v=4"></script>
+    <script src="app.js?v=5"></script>
   </body>
 </html>

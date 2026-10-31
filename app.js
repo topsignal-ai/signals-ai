@@ -83,10 +83,33 @@ function generateMultiplier() {
   return `${value.toFixed(2)}×`;
 }
 
+const signalButtons = [aviatorButton, minesButton, chickenButton];
+const cooldownLabels = signalButtons.map(button => button.querySelector(".button-copy").textContent);
+const cooldownStatus = document.querySelector("#cooldownStatus");
+let generating = false;
+let nextSignalAt = Number(sessionStorage.getItem("gptsignal-next-signal")) || 0;
+function syncCooldown() {
+  const remaining = Math.max(0, Math.ceil((nextSignalAt - Date.now()) / 1000));
+  signalButtons.forEach((button, index) => {
+    button.disabled = generating || remaining > 0;
+    if (!button.classList.contains("loading")) {
+      button.querySelector(".button-copy").textContent = remaining ? `ESPERA ${remaining} s` : cooldownLabels[index];
+    }
+  });
+  cooldownStatus.textContent = remaining ? `Próxima señal en ${remaining} s` : "";
+}
+window.setInterval(syncCooldown, 250);
+syncCooldown();
+
 function setLoading(button, loading) {
-  button.disabled = loading;
+  generating = loading;
   button.classList.toggle("loading", loading);
   button.setAttribute("aria-busy", String(loading));
+  if (!loading) {
+    nextSignalAt = Date.now() + 10000;
+    sessionStorage.setItem("gptsignal-next-signal", String(nextSignalAt));
+  }
+  syncCooldown();
 }
 
 function runAviatorSignal() {
