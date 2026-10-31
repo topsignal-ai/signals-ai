@@ -1,13 +1,14 @@
 # TopSignal AI
 
-Aplicación web móvil en español con acceso por ID y señales demostrativas para Aviator y Mines.
+Aplicación web móvil en español con acceso por ID y señales demostrativas para Aviator, Mines y Chicken Road.
 
 ## Funciones
 
 - Acceso con cualquier ID no vacío.
-- Menú móvil para elegir Aviator o Mines.
+- Menú móvil para elegir Aviator, Mines o Chicken Road.
 - Generador aleatorio de multiplicadores demo entre X1.00 y X2.00.
 - Tablero Mines 5×5 con una o dos casillas sugeridas al azar.
+- Chicken Road con una ruta aleatoria de 1 a 5 pasos.
 - Diseño adaptable, instalable como PWA y disponible sin conexión.
 - Sin servidor, base de datos ni recopilación de datos personales.
 

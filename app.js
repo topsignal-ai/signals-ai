@@ -17,6 +17,12 @@ const aviatorStatus = document.querySelector("#aviatorStatus");
 const minesBoard = document.querySelector("#minesBoard");
 const minesStatus = document.querySelector("#minesStatus");
 
+const chickenPanel = document.querySelector("#chickenPanel");
+const chickenButton = document.querySelector("#chickenButton");
+const chickenValue = document.querySelector("#chickenValue");
+const chickenStatus = document.querySelector("#chickenStatus");
+const roadChicken = document.querySelector("#roadChicken");
+const gemMarkup = "<svg viewBox=\"0 0 64 64\" aria-hidden=\"true\"><path d=\"m7 23 13-14h24l13 14-25 33Z\" fill=\"#38e8bc\"/><path d=\"m7 23 25 33-12-33 12-14 12 14-12 33 25-33Z\" fill=\"#17a68a\"/><path d=\"M7 23h50M20 9l-1 14h26L44 9\" fill=\"none\" stroke=\"#b7ffed\" stroke-width=\"2\"/></svg>";
 const state = {
   currentGame: "aviator",
 };
@@ -66,14 +72,15 @@ function openGame(game) {
   signalsScreen.classList.add("active");
   aviatorPanel.classList.toggle("hidden", game !== "aviator");
   minesPanel.classList.toggle("hidden", game !== "mines");
-  signalTitle.textContent = game === "aviator" ? "Aviator" : "Mines";
+  chickenPanel.classList.toggle("hidden", game !== "chicken");
+  signalTitle.textContent = ({ aviator: "Aviator", mines: "Mines", chicken: "Chicken Road" })[game];
   updateNavigation(game);
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function generateMultiplier() {
   const value = (100 + Math.floor(secureRandom() * 101)) / 100;
-  return `X${value.toFixed(2)}`;
+  return `${value.toFixed(2)}×`;
 }
 
 function setLoading(button, loading) {
@@ -83,6 +90,7 @@ function setLoading(button, loading) {
 }
 
 function runAviatorSignal() {
+  if (aviatorButton.disabled) return;
   setLoading(aviatorButton, true);
   aviatorPanel.classList.add("is-loading");
   aviatorStatus.textContent = "Generando…";
@@ -106,6 +114,7 @@ function buildMinesBoard() {
     const cell = document.createElement("div");
     cell.className = "mine-cell";
     cell.dataset.cell = String(index + 1);
+    cell.textContent = String(index + 1);
     cell.setAttribute("aria-label", `Casilla ${index + 1}`);
     minesBoard.appendChild(cell);
   }
@@ -124,23 +133,51 @@ function chooseUniqueCells(amount) {
 }
 
 function runMinesSignal() {
+  if (minesButton.disabled) return;
   setLoading(minesButton, true);
-  minesStatus.textContent = "Analizando el tablero…";
-  document.querySelectorAll(".mine-cell").forEach((cell) => cell.classList.remove("safe"));
-
+  minesStatus.textContent = "Generando casillas…";
+  const cells = [...minesBoard.children];
+  cells.forEach((cell, index) => {
+    cell.classList.remove("safe");
+    cell.textContent = String(index + 1);
+    cell.setAttribute("aria-label", `Casilla ${index + 1}`);
+  });
   window.setTimeout(() => {
-    const safeCount = secureRandom() < 0.5 ? 1 : 2;
-    const selected = chooseUniqueCells(safeCount);
-    const cells = [...document.querySelectorAll(".mine-cell")];
-
-    selected.forEach((cellIndex, order) => {
-      window.setTimeout(() => cells[cellIndex].classList.add("safe"), order * 100);
+    const selected = chooseUniqueCells(secureRandom() < 0.5 ? 1 : 2).sort((a,b) => a-b);
+    selected.forEach(index => {
+      cells[index].classList.add("safe");
+      cells[index].innerHTML = gemMarkup + `<span class="cell-number">${index + 1}</span>`;
+      cells[index].setAttribute("aria-label", `Casilla ${index + 1}: diamante de demostración`);
     });
-
-    minesStatus.textContent = `${safeCount} casillas sugeridas`;
+    minesStatus.textContent = `Casillas: ${selected.map(index => index + 1).join(" y ")} · ${selected.length} diamante${selected.length > 1 ? "s" : ""}`;
     setLoading(minesButton, false);
   }, 650);
 }
+
+function runChickenSignal() {
+  if (chickenButton.disabled) return;
+  setLoading(chickenButton, true);
+  chickenValue.textContent = "—";
+  chickenStatus.textContent = "Generando ruta…";
+  roadChicken.style.left = "0%";
+  document.querySelectorAll(".road-step").forEach(step => step.classList.remove("reached"));
+  window.setTimeout(() => {
+    const steps = 1 + Math.floor(secureRandom() * 5);
+    roadChicken.style.left = `${(steps - 1) * 20 + 1}%`;
+    document.querySelectorAll(".road-step").forEach((step, index) => step.classList.toggle("reached", index < steps));
+    chickenValue.textContent = `${steps} ${steps === 1 ? "paso" : "pasos"}`;
+    chickenStatus.textContent = `Ruta aleatoria hasta el paso ${steps} de 5`;
+    setLoading(chickenButton, false);
+  }, 700);
+}
+for (let i = 1; i <= 5; i++) {
+  const step = document.createElement("span");
+  step.className = "road-step";
+  step.textContent = i;
+  step.setAttribute("aria-label", `Paso ${i}`);
+  document.querySelector("#roadTrack").appendChild(step);
+}
+chickenButton.addEventListener("click", runChickenSignal);
 
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();

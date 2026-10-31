@@ -1,7 +1,7 @@
 {
   "name": "TopSignal AI",
   "short_name": "TopSignal",
-  "description": "Panel móvil de señales demo para Aviator y Mines.",
+  "description": "Panel móvil de señales demo para Aviator, Mines y Chicken Road.",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#050612",
