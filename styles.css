@@ -99,3 +99,28 @@ h1 span,.brand-name b,.game-meta strong,.section-heading h3 b{color:var(--gold)}
 .flip-back .lock-text{color:var(--gold-soft)}
 
 @media(min-width:600px){.app-shell{border-color:var(--line)}}
+
+/* ============ Поле Mines в стиле игры ============ */
+#minesPanel{background:#141f36;border-color:#2b3e61}
+#minesPanel .mines-topbar strong{color:#e6edfb}
+#minesPanel .mines-topbar span,#minesPanel .small-tag{border-color:#3d5c8c;color:#a8bedd}
+#minesPanel .game-help{background:#17233c;border-color:#2b3e61;color:#cfdcf2}
+#minesPanel .game-help summary{color:#9ec1f0}
+#minesPanel .panel-copy,#minesPanel .demo-note{color:#93a7c7}
+.mines-board{gap:10px;margin:22px 0;padding:14px;border-radius:18px;background:#101a2e;border:1px solid #243a5c}
+.mine-cell{background:#1d2c48;border:2px solid #3d5c8c;border-bottom:2px solid #3d5c8c;border-radius:16px;font-size:0;position:relative;display:grid;place-items:center;transition:background .25s,border-color .25s,transform .2s}
+.mine-cell:before{content:"";width:24%;aspect-ratio:1;border-radius:50%;background:#35517e}
+.mine-cell.safe{background:#3c2f0b;border-color:var(--gold);transform:scale(1.03)}
+.mine-cell.safe:before{display:none}
+.mine-cell svg{width:68%;height:68%}
+.mine-cell .cell-number{font-size:9px;color:var(--gold-soft);left:6px;top:4px}
+#minesPanel .mines-message>span{color:#8fa9cf}
+#minesPanel .mines-message strong{color:var(--gold-soft)}
+
+/* ============ Инструкция «как найти игру» ============ */
+.guide-help{margin-top:-8px}
+.guide-shot{display:block;margin-top:12px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#0e0b06;text-decoration:none}
+.guide-shot img{display:block;width:100%;height:auto}
+.guide-zoom{display:block;padding:9px 12px;font-size:11px;color:var(--gold-soft);text-align:center;background:#1a160e}
+#minesPanel .guide-shot{border-color:#2b3e61;background:#0e1626}
+#minesPanel .guide-zoom{color:#a8bedd;background:#17233c}
