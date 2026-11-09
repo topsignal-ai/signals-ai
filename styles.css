@@ -122,3 +122,8 @@ h1 span,.brand-name b,.game-meta strong,.section-heading h3 b{color:var(--gold)}
 .guide-shot{margin-top:12px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#0e0b06}
 .guide-shot img{display:block;width:100%;height:auto}
 #minesPanel .guide-shot{border-color:#2b3e61;background:#0e1626}
+
+/* ============ Аватарки игр на карточках ============ */
+.game-photo{width:108px;height:76px;padding:0;border-radius:14px;overflow:hidden;border:1px solid #4a3d22;background:#0e0b06}
+.game-photo img{display:block;width:100%;height:100%;object-fit:cover}
+@media(max-width:360px){.game-photo{width:92px;height:66px}}
