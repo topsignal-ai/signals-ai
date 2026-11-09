@@ -119,8 +119,6 @@ h1 span,.brand-name b,.game-meta strong,.section-heading h3 b{color:var(--gold)}
 
 /* ============ Инструкция «как найти игру» ============ */
 .guide-help{margin-top:-8px}
-.guide-shot{display:block;margin-top:12px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#0e0b06;text-decoration:none}
+.guide-shot{margin-top:12px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#0e0b06}
 .guide-shot img{display:block;width:100%;height:auto}
-.guide-zoom{display:block;padding:9px 12px;font-size:11px;color:var(--gold-soft);text-align:center;background:#1a160e}
 #minesPanel .guide-shot{border-color:#2b3e61;background:#0e1626}
-#minesPanel .guide-zoom{color:#a8bedd;background:#17233c}
