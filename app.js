@@ -26,6 +26,7 @@ const gemMarkup = "<svg viewBox=\"0 0 64 64\" aria-hidden=\"true\"><path d=\"m7 
 const ALLOWED_PLAYER_ID = "1873000020";
 const LIMITED_PLAYER_ID = "1373000020";
 const KNOWN_PLAYER_IDS = [ALLOWED_PLAYER_ID, LIMITED_PLAYER_ID];
+const PLAYER_ID_LENGTH = 10;
 const LOCK_MARKUP = "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"4.5\" y=\"10.5\" width=\"15\" height=\"10\" rx=\"2.5\"/><path d=\"M8 10.5V7a4 4 0 0 1 8 0v3.5\"/></svg>";
 
 const state = {
@@ -276,10 +277,17 @@ chickenButton.addEventListener("click", runChickenSignal);
 
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  const playerId = playerIdInput.value.trim();
+  const playerId = playerIdInput.value.replace(/\D/g, "").slice(0, PLAYER_ID_LENGTH);
+  playerIdInput.value = playerId;
 
   if (!playerId) {
     showLoginError("Введите свой ID игрока 1xBet для продолжения.", false);
+    playerIdInput.focus();
+    return;
+  }
+
+  if (playerId.length < PLAYER_ID_LENGTH) {
+    showLoginError(`ID состоит из ${PLAYER_ID_LENGTH} цифр — введено ${playerId.length}.`, false);
     playerIdInput.focus();
     return;
   }
@@ -296,6 +304,8 @@ loginForm.addEventListener("submit", (event) => {
 });
 
 playerIdInput.addEventListener("input", () => {
+  const digits = playerIdInput.value.replace(/\D/g, "").slice(0, PLAYER_ID_LENGTH);
+  if (playerIdInput.value !== digits) playerIdInput.value = digits;
   clearLoginError();
 });
 
