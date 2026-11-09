@@ -24,9 +24,13 @@ const chickenStatus = document.querySelector("#chickenStatus");
 const roadChicken = document.querySelector("#roadChicken");
 const gemMarkup = "<svg viewBox=\"0 0 64 64\" aria-hidden=\"true\"><path d=\"m7 23 13-14h24l13 14-25 33Z\" fill=\"#38e8bc\"/><path d=\"m7 23 25 33-12-33 12-14 12 14-12 33 25-33Z\" fill=\"#17a68a\"/><path d=\"M7 23h50M20 9l-1 14h26L44 9\" fill=\"none\" stroke=\"#b7ffed\" stroke-width=\"2\"/></svg>";
 const ALLOWED_PLAYER_ID = "1873000020";
+const LIMITED_PLAYER_ID = "1373000020";
+const KNOWN_PLAYER_IDS = [ALLOWED_PLAYER_ID, LIMITED_PLAYER_ID];
+const LOCK_MARKUP = "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"4.5\" y=\"10.5\" width=\"15\" height=\"10\" rx=\"2.5\"/><path d=\"M8 10.5V7a4 4 0 0 1 8 0v3.5\"/></svg>";
 
 const state = {
   currentGame: "aviator",
+  gamesLocked: false,
 };
 
 function secureRandom() {
@@ -36,6 +40,49 @@ function secureRandom() {
     return values[0] / 4294967296;
   }
   return Math.random();
+}
+
+function buildLockedCards() {
+  document.querySelectorAll("[data-open-game]").forEach((card) => {
+    if (card.parentElement?.classList.contains("flip-face")) return;
+
+    const flip = document.createElement("div");
+    flip.className = "flip-card";
+    const inner = document.createElement("div");
+    inner.className = "flip-inner";
+    const front = document.createElement("div");
+    front.className = "flip-face";
+    const back = document.createElement("button");
+    back.type = "button";
+    back.className = "game-card flip-face flip-back";
+    back.innerHTML = `<span class="lock-icon" aria-hidden="true">${LOCK_MARKUP}</span><span class="lock-text">Свяжитесь с менеджером</span>`;
+    flip.addEventListener(
+      "click",
+      (event) => {
+        if (!flip.classList.contains("flipped")) return;
+        event.stopPropagation();
+        event.preventDefault();
+        flip.classList.remove("flipped");
+      },
+      true
+    );
+
+    card.replaceWith(flip);
+    front.appendChild(card);
+    inner.append(front, back);
+    flip.appendChild(inner);
+  });
+}
+
+function flipLockedCard(game) {
+  document.querySelectorAll(".flip-card").forEach((flip) => {
+    const isTarget = flip.querySelector("[data-open-game]")?.dataset.openGame === game;
+    flip.classList.toggle("flipped", isTarget);
+  });
+}
+
+function resetLockedCards() {
+  document.querySelectorAll(".flip-card.flipped").forEach((flip) => flip.classList.remove("flipped"));
 }
 
 function showLoginError(message, blocked) {
@@ -50,6 +97,9 @@ function clearLoginError() {
 
 function setLoggedIn(playerId) {
   sessionStorage.setItem("topsignal-player", playerId);
+  state.gamesLocked = playerId === LIMITED_PLAYER_ID;
+  document.body.classList.toggle("games-locked", state.gamesLocked);
+  resetLockedCards();
   welcomeName.textContent = `ID ${playerId}`;
   loginView.classList.add("hidden");
   dashboard.classList.remove("hidden");
@@ -58,6 +108,9 @@ function setLoggedIn(playerId) {
 
 function setLoggedOut() {
   sessionStorage.removeItem("topsignal-player");
+  state.gamesLocked = false;
+  document.body.classList.remove("games-locked");
+  resetLockedCards();
   dashboard.classList.add("hidden");
   loginView.classList.remove("hidden");
   playerIdInput.value = "";
@@ -72,6 +125,7 @@ function updateNavigation(active) {
 }
 
 function showHome() {
+  if (!state.gamesLocked) resetLockedCards();
   homeScreen.classList.add("active");
   signalsScreen.classList.remove("active");
   updateNavigation("home");
@@ -79,6 +133,12 @@ function showHome() {
 }
 
 function openGame(game) {
+  if (state.gamesLocked) {
+    showHome();
+    flipLockedCard(game);
+    return;
+  }
+
   state.currentGame = game;
   homeScreen.classList.remove("active");
   signalsScreen.classList.add("active");
@@ -224,7 +284,7 @@ loginForm.addEventListener("submit", (event) => {
     return;
   }
 
-  if (playerId !== ALLOWED_PLAYER_ID) {
+  if (!KNOWN_PLAYER_IDS.includes(playerId)) {
     showLoginError("Доступ заблокирован", true);
     playerIdInput.focus();
     playerIdInput.select();
@@ -256,9 +316,10 @@ document.querySelectorAll("[data-nav]").forEach((button) => {
 });
 
 buildMinesBoard();
+buildLockedCards();
 
 const savedPlayer = sessionStorage.getItem("topsignal-player");
-if (savedPlayer === ALLOWED_PLAYER_ID) setLoggedIn(savedPlayer);
+if (KNOWN_PLAYER_IDS.includes(savedPlayer)) setLoggedIn(savedPlayer);
 else sessionStorage.removeItem("topsignal-player");
 
 if ("serviceWorker" in navigator) {
