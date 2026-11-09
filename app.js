@@ -1,5 +1,10 @@
 const loginView = document.querySelector("#loginView");
 const dashboard = document.querySelector("#dashboard");
+const bootView = document.querySelector("#bootView");
+const bootStage = document.querySelector("#bootStage");
+const bootBar = document.querySelector("#bootBar");
+const bootPercent = document.querySelector("#bootPercent");
+const bootLog = document.querySelector("#bootLog");
 const loginForm = document.querySelector("#loginForm");
 const playerIdInput = document.querySelector("#playerId");
 const loginError = document.querySelector("#loginError");
@@ -32,7 +37,73 @@ const LOCK_MARKUP = "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"4
 const state = {
   currentGame: "aviator",
   gamesLocked: false,
+  booting: false,
 };
+
+const BOOT_DURATION = 4000;
+const BOOT_STEPS = [
+  { at: 0, stage: "Estableciendo conexión segura…", line: "handshake TLS 1.3 · node eu-west-3" },
+  { at: 9, line: "socket abierto · latencia 38 ms", ok: true },
+  { at: 17, stage: "Autenticando ID de jugador", line: "auth token 0x7F3A91C4D0" },
+  { at: 27, line: "jugador verificado · acceso válido", ok: true },
+  { at: 34, stage: "Configurando el servidor", line: "sync cfg 4/4 · región LATAM" },
+  { at: 45, stage: "Conectando la IA", line: "load model gpt-signal-4 · 1.84 GB" },
+  { at: 56, line: "núcleo de IA en línea", ok: true },
+  { at: 63, stage: "Cargando historial de rondas", line: "fetch rounds 12 480 · aviator/mines/chicken" },
+  { at: 74, stage: "Calibrando el algoritmo", line: "calibrate seed 0x9C21D4 · desvío 0.4 %" },
+  { at: 85, stage: "Preparando las señales", line: "buffer de señales listo" },
+  { at: 94, line: "cifrando el canal del jugador", ok: true },
+  { at: 100, stage: "Acceso concedido", line: "sesión iniciada · OK", ok: true },
+];
+
+function appendBootLine(step) {
+  const line = document.createElement("p");
+  if (step.ok) line.className = "ok";
+  line.innerHTML = `<b>&gt;</b> ${step.line}`;
+  bootLog.append(line);
+  while (bootLog.children.length > 9) bootLog.firstElementChild.remove();
+}
+
+function runBootSequence(playerId) {
+  state.booting = true;
+  bootLog.innerHTML = "";
+  bootBar.style.width = "0%";
+  bootPercent.textContent = "0";
+  bootStage.textContent = BOOT_STEPS[0].stage;
+  loginView.classList.add("hidden");
+  dashboard.classList.add("hidden");
+  bootView.classList.remove("hidden");
+  window.scrollTo({ top: 0 });
+
+  let next = 0;
+  const started = Date.now();
+
+  const tick = () => {
+    const elapsed = Date.now() - started;
+    const percent = Math.min(100, Math.round((elapsed / BOOT_DURATION) * 100));
+    bootBar.style.width = `${percent}%`;
+    bootPercent.textContent = String(percent);
+
+    while (next < BOOT_STEPS.length && BOOT_STEPS[next].at <= percent) {
+      const step = BOOT_STEPS[next];
+      if (step.stage) bootStage.textContent = step.stage;
+      appendBootLine(step);
+      next += 1;
+    }
+
+    if (percent < 100) return;
+
+    window.clearInterval(timer);
+    window.setTimeout(() => {
+      state.booting = false;
+      bootView.classList.add("hidden");
+      setLoggedIn(playerId);
+    }, 420);
+  };
+
+  const timer = window.setInterval(tick, 60);
+  tick();
+}
 
 function secureRandom() {
   if (window.crypto?.getRandomValues) {
@@ -109,6 +180,8 @@ function setLoggedIn(playerId) {
 
 function setLoggedOut() {
   sessionStorage.removeItem("topsignal-player");
+  bootView.classList.add("hidden");
+  state.booting = false;
   state.gamesLocked = false;
   document.body.classList.remove("games-locked");
   resetLockedCards();
@@ -300,7 +373,7 @@ loginForm.addEventListener("submit", (event) => {
   }
 
   clearLoginError();
-  setLoggedIn(playerId);
+  runBootSequence(playerId);
 });
 
 playerIdInput.addEventListener("input", () => {

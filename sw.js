@@ -1,5 +1,5 @@
-const CACHE_NAME = "gptsignal-v17";
-const ASSETS = ["./", "./index.html", "./styles.css?v=16", "./app.js?v=16", "./manifest.webmanifest", "./assets/icon.svg"];
+const CACHE_NAME = "gptsignal-v18";
+const ASSETS = ["./", "./index.html", "./styles.css?v=17", "./app.js?v=17", "./manifest.webmanifest", "./assets/icon.svg"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)));

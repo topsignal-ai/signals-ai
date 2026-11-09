@@ -11,7 +11,7 @@
     <title>GPT Signal</title>
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css?v=16" />
+    <link rel="stylesheet" href="styles.css?v=17" />
   </head>
   <body class="redesign">
     <div class="ambient ambient-one" aria-hidden="true"></div>
@@ -61,6 +61,25 @@
         </form>
 
         <aside class="access-note"><strong>Condiciones de acceso</strong><p>ID de 1xBet registrado previamente con tu gerente y saldo real en la cuenta.</p></aside><p class="age-note"><strong>18+</strong> Juega con responsabilidad</p>
+      </section>
+
+      <section class="boot-view hidden" id="bootView" aria-live="polite">
+        <div class="boot-top">
+          <div class="brand-mark brand-mark-large" aria-hidden="true">
+            <span class="orbit orbit-a"></span>
+            <span class="orbit orbit-b"></span>
+            <span class="signal-core"></span>
+          </div>
+          <h2 class="boot-title" id="bootStage">Estableciendo conexión segura…</h2>
+          <p class="boot-sub">No cierres la aplicación</p>
+        </div>
+
+        <div class="boot-meter">
+          <div class="boot-bar"><span id="bootBar"></span></div>
+          <div class="boot-percent"><span id="bootPercent">0</span>%</div>
+        </div>
+
+        <div class="boot-console" id="bootLog" role="log"></div>
       </section>
 
       <section class="dashboard hidden" id="dashboard" aria-label="Panel de señales">
@@ -178,6 +197,6 @@
       </section>
     </main>
 
-    <script src="app.js?v=16"></script>
+    <script src="app.js?v=17"></script>
   </body>
 </html>

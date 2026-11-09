@@ -127,3 +127,113 @@ h1 span,.brand-name b,.game-meta strong,.section-heading h3 b{color:var(--gold)}
 .game-photo{width:108px;height:76px;padding:0;border-radius:14px;overflow:hidden;border:1px solid #4a3d22;background:#0e0b06}
 .game-photo img{display:block;width:100%;height:100%;object-fit:cover}
 @media(max-width:360px){.game-photo{width:92px;height:66px}}
+
+/* ---- Boot / loading screen after a successful login ---- */
+.boot-view {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  padding: 48px 20px 36px;
+  min-height: 100vh;
+  justify-content: center;
+}
+
+.boot-view.hidden { display: none; }
+
+.boot-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.boot-title {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 700;
+  color: var(--text);
+  min-height: 2.6em;
+  display: flex;
+  align-items: center;
+}
+
+.boot-sub {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.boot-meter {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.boot-bar {
+  position: relative;
+  flex: 1;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 192, 67, 0.12);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.boot-bar span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold), var(--gold-soft));
+  box-shadow: 0 0 18px rgba(255, 192, 67, 0.55);
+  transition: width 0.18s linear;
+}
+
+.boot-percent {
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--gold);
+  min-width: 56px;
+  text-align: right;
+}
+
+.boot-console {
+  height: 190px;
+  overflow: hidden;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.35);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11.5px;
+  line-height: 1.75;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.boot-console p {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  animation: bootLineIn 0.25s ease-out both;
+}
+
+.boot-console p b {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.boot-console p.ok { color: var(--green); }
+
+@keyframes bootLineIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
