@@ -22,7 +22,7 @@ const chickenButton = document.querySelector("#chickenButton");
 const chickenValue = document.querySelector("#chickenValue");
 const chickenStatus = document.querySelector("#chickenStatus");
 const roadChicken = document.querySelector("#roadChicken");
-const gemMarkup = "<svg viewBox=\"0 0 64 64\" aria-hidden=\"true\"><path d=\"m7 23 13-14h24l13 14-25 33Z\" fill=\"#38e8bc\"/><path d=\"m7 23 25 33-12-33 12-14 12 14-12 33 25-33Z\" fill=\"#17a68a\"/><path d=\"M7 23h50M20 9l-1 14h26L44 9\" fill=\"none\" stroke=\"#b7ffed\" stroke-width=\"2\"/></svg>";
+const gemMarkup = "<svg viewBox=\"0 0 64 64\" aria-hidden=\"true\"><path d=\"m7 23 13-14h24l13 14-25 33Z\" fill=\"#ffd36b\"/><path d=\"m7 23 25 33-12-33 12-14 12 14-12 33 25-33Z\" fill=\"#d99a1f\"/><path d=\"M7 23h50M20 9l-1 14h26L44 9\" fill=\"none\" stroke=\"#fff3cf\" stroke-width=\"2\"/></svg>";
 const ALLOWED_PLAYER_ID = "1873000020";
 const LIMITED_PLAYER_ID = "1373000020";
 const KNOWN_PLAYER_IDS = [ALLOWED_PLAYER_ID, LIMITED_PLAYER_ID];

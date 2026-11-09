@@ -4,8 +4,8 @@
   "description": "GPT Signal — Aviator, Mines и Chicken Road.",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#050612",
-  "theme_color": "#07081a",
+  "background_color": "#13110c",
+  "theme_color": "#ffc043",
   "icons": [
     {
       "src": "assets/icon.svg",

@@ -14,3 +14,88 @@ body.games-locked .card-arrow{opacity:.35}
 @media(max-width:360px){.flip-back .lock-text{font-size:14px}}
 .flip-card:not(.flipped) .flip-back{pointer-events:none}
 .flip-card.flipped .flip-face:not(.flip-back){pointer-events:none}
+
+/* ============ Золотая тема ============ */
+:root{
+  --bg:#13110c;--surface:#1e1a12;--surface-2:#262016;--line:#3b3220;
+  --text:#fdf7ea;--muted:#b8a888;
+  --gold:#ffc043;--gold-soft:#ffd97a;--gold-deep:#e09a12;--ink:#1a1407;
+  --red:#ff8a3d;--green:#ffd36b;
+}
+body{background:radial-gradient(ellipse at 50% 0,#3b2c0e,transparent 62%),var(--bg)}
+.app-shell{background:#15120c}
+button:focus-visible,input:focus-visible{outline:3px solid var(--gold-soft);outline-offset:3px}
+
+/* Логотип и заголовки */
+.brand-mark{background:linear-gradient(135deg,#ffd97a,#e09a12)}
+.brand-mark:before{color:#1a1407}
+h1 span,.brand-name b,.game-meta strong,.section-heading h3 b{color:var(--gold)}
+
+/* Экран входа */
+.login-card{background:var(--surface);border-color:var(--line)}
+.input-wrap{background:#120f09;border-color:#4a3d22}
+.input-wrap svg{color:var(--gold-soft)}
+.input-wrap input{color:var(--text);letter-spacing:1px}
+.input-wrap input::placeholder{color:#8d8066;letter-spacing:0}
+.primary-button,.signal-button{background:linear-gradient(180deg,var(--gold-soft),var(--gold));color:var(--ink);font-size:15px}
+.primary-button:hover,.signal-button:hover{filter:brightness(1.06)}
+.field-error{color:#ffbf8a}
+.field-error.is-blocked{color:#ff6b57}
+.access-note strong{color:var(--gold-soft)}
+
+/* Шапка приложения */
+.app-header{border-color:var(--line);background:#181409}
+.icon-button,.back-button{background:var(--surface-2);border-color:var(--line);color:var(--gold-soft)}
+
+/* Карточки игр */
+.game-card{background:linear-gradient(115deg,#2b2211,#1b1710);border-color:var(--line);min-height:124px}
+.game-card:hover{border-color:var(--gold);background-color:#2e2412}
+.mines-card,.chicken-card{background:linear-gradient(115deg,#2b2211,#1b1710)}
+.game-icon{background:#ffc0431a;border:1px solid #4a3d22}
+.aviator-card strong,.mines-card strong,.chicken-card strong{color:var(--gold)}
+.chicken-card strong{font-size:20px}
+.game-meta small{color:var(--gold-deep)}
+.game-meta em{color:var(--muted)}
+.card-arrow{color:var(--gold)}
+
+/* Подсказка «как это работает» */
+.quick-guide{margin:22px 0 0;gap:10px;color:var(--muted);font-size:12px}
+.quick-guide span{align-items:flex-start;gap:10px;padding:11px 13px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.quick-guide i{font-style:normal;flex-shrink:0;width:21px;height:21px;display:grid;place-items:center;border-radius:50%;background:var(--gold);color:var(--ink);font-size:11px;font-weight:800}
+.quick-guide b{color:var(--text);font-weight:600}
+
+/* Экран сигнала */
+.signal-panel{background:var(--surface);border-color:var(--line)}
+.signal-toolbar .eyebrow{display:block;font-size:9px;color:var(--gold-deep)}
+.status-chip{border-color:var(--line);background:#ffc0431a;color:var(--gold-soft)}
+.small-tag,.mines-topbar span{border-color:#4a3d22;color:var(--gold-soft)}
+.game-wordmark{color:var(--gold)}
+.game-help{border-color:var(--line);background:#1a160e;color:#e6dcc6}
+.game-help summary{color:var(--gold-soft)}
+.flight-stage{background:radial-gradient(ellipse at 90% 80%,#6b4a0d55,transparent 65%),#120f09;border-color:#3b3220}
+.plane-icon,.flight-plane{color:var(--red)}
+.signal-result>span,.mines-message>span{color:var(--gold-deep)}
+.signal-result strong{color:var(--gold)}
+.signal-result p,.demo-note{color:var(--muted)}
+.mine-cell{background:linear-gradient(145deg,#3a3119,#262016);border-color:#4a3d22;border-bottom-color:#17130b;color:#b8a888}
+.mine-cell.safe{background:#4a3708;border-color:var(--gold);color:var(--text)}
+.cell-number{color:#d9c79a}
+.mines-button,.chicken-button{background:linear-gradient(180deg,var(--gold-soft),var(--gold));color:var(--ink)}
+.road-scene{background:#241d10;border-color:#4a3d22}
+.road-track{border-block-color:#6b5a2b}
+.road-step{background:#191409;border-color:#5c4c2a;color:var(--muted)}
+.road-step.reached{background:var(--gold);color:var(--ink);border-color:var(--gold-soft)}
+.info-banner{background:#1a160e;border-color:var(--line)}
+.info-banner svg{color:var(--gold-soft)}
+
+/* Нижняя навигация */
+.bottom-nav{background:#15120cf5;border-color:var(--line)}
+.nav-item{color:#9d8f74}
+.nav-item.active{background:#ffc0431f;color:var(--gold)}
+
+/* Закрытая карточка */
+.flip-back{background:linear-gradient(115deg,#332611,#1b1710);border-color:#5c4c2a}
+.flip-back .lock-icon{background:#ffc0431a;color:var(--gold)}
+.flip-back .lock-text{color:var(--gold-soft)}
+
+@media(min-width:600px){.app-shell{border-color:var(--line)}}
