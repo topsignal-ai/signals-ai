@@ -23,6 +23,8 @@ const chickenValue = document.querySelector("#chickenValue");
 const chickenStatus = document.querySelector("#chickenStatus");
 const roadChicken = document.querySelector("#roadChicken");
 const gemMarkup = "<svg viewBox=\"0 0 64 64\" aria-hidden=\"true\"><path d=\"m7 23 13-14h24l13 14-25 33Z\" fill=\"#38e8bc\"/><path d=\"m7 23 25 33-12-33 12-14 12 14-12 33 25-33Z\" fill=\"#17a68a\"/><path d=\"M7 23h50M20 9l-1 14h26L44 9\" fill=\"none\" stroke=\"#b7ffed\" stroke-width=\"2\"/></svg>";
+const ALLOWED_PLAYER_ID = "1873000020";
+
 const state = {
   currentGame: "aviator",
 };
@@ -34,6 +36,16 @@ function secureRandom() {
     return values[0] / 4294967296;
   }
   return Math.random();
+}
+
+function showLoginError(message, blocked) {
+  loginError.textContent = message;
+  loginError.classList.toggle("is-blocked", Boolean(blocked));
+}
+
+function clearLoginError() {
+  loginError.textContent = "";
+  loginError.classList.remove("is-blocked");
 }
 
 function setLoggedIn(playerId) {
@@ -49,7 +61,7 @@ function setLoggedOut() {
   dashboard.classList.add("hidden");
   loginView.classList.remove("hidden");
   playerIdInput.value = "";
-  loginError.textContent = "";
+  clearLoginError();
   window.setTimeout(() => playerIdInput.focus(), 80);
 }
 
@@ -207,17 +219,24 @@ loginForm.addEventListener("submit", (event) => {
   const playerId = playerIdInput.value.trim();
 
   if (!playerId) {
-    loginError.textContent = "Введите свой ID игрока 1xBet для продолжения.";
+    showLoginError("Введите свой ID игрока 1xBet для продолжения.", false);
     playerIdInput.focus();
     return;
   }
 
-  loginError.textContent = "";
+  if (playerId !== ALLOWED_PLAYER_ID) {
+    showLoginError("Доступ заблокирован", true);
+    playerIdInput.focus();
+    playerIdInput.select();
+    return;
+  }
+
+  clearLoginError();
   setLoggedIn(playerId);
 });
 
 playerIdInput.addEventListener("input", () => {
-  loginError.textContent = "";
+  clearLoginError();
 });
 
 logoutButton.addEventListener("click", setLoggedOut);
@@ -239,7 +258,8 @@ document.querySelectorAll("[data-nav]").forEach((button) => {
 buildMinesBoard();
 
 const savedPlayer = sessionStorage.getItem("topsignal-player");
-if (savedPlayer) setLoggedIn(savedPlayer);
+if (savedPlayer === ALLOWED_PLAYER_ID) setLoggedIn(savedPlayer);
+else sessionStorage.removeItem("topsignal-player");
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
