@@ -56,7 +56,7 @@ function buildLockedCards() {
     const back = document.createElement("button");
     back.type = "button";
     back.className = "game-card flip-face flip-back";
-    back.innerHTML = `<span class="lock-icon" aria-hidden="true">${LOCK_MARKUP}</span><span class="lock-text">Свяжитесь с менеджером</span>`;
+    back.innerHTML = `<span class="lock-icon" aria-hidden="true">${LOCK_MARKUP}</span><span class="lock-text">Contacta a tu gerente</span>`;
     flip.addEventListener(
       "click",
       (event) => {
@@ -166,10 +166,10 @@ function syncCooldown() {
   signalButtons.forEach((button, index) => {
     button.disabled = generating || remaining > 0;
     if (!button.classList.contains("loading")) {
-      button.querySelector(".button-copy").textContent = remaining ? `ПОДОЖДИТЕ ${remaining} с` : cooldownLabels[index];
+      button.querySelector(".button-copy").textContent = remaining ? `ESPERA ${remaining} s` : cooldownLabels[index];
     }
   });
-  cooldownStatus.textContent = remaining ? `Следующий сигнал через ${remaining} с` : "";
+  cooldownStatus.textContent = remaining ? `Próxima señal en ${remaining} s` : "";
 }
 window.setInterval(syncCooldown, 250);
 syncCooldown();
@@ -189,7 +189,7 @@ function runAviatorSignal() {
   if (aviatorButton.disabled) return;
   setLoading(aviatorButton, true);
   aviatorPanel.classList.add("is-loading");
-  aviatorStatus.textContent = "Создаём сигнал…";
+  aviatorStatus.textContent = "Generando señal…";
   multiplierValue.textContent = "—";
 
   window.setTimeout(() => {
@@ -198,7 +198,7 @@ function runAviatorSignal() {
     multiplierValue.classList.remove("result-pop");
     void multiplierValue.offsetWidth;
     multiplierValue.classList.add("result-pop");
-    aviatorStatus.textContent = "Готово";
+    aviatorStatus.textContent = "Listo";
     aviatorPanel.classList.remove("is-loading");
     setLoading(aviatorButton, false);
   }, 700);
@@ -211,7 +211,7 @@ function buildMinesBoard() {
     cell.className = "mine-cell";
     cell.dataset.cell = String(index + 1);
     cell.textContent = String(index + 1);
-    cell.setAttribute("aria-label", `Клетка ${index + 1}`);
+    cell.setAttribute("aria-label", `Casilla ${index + 1}`);
     minesBoard.appendChild(cell);
   }
 }
@@ -231,21 +231,21 @@ function chooseUniqueCells(amount) {
 function runMinesSignal() {
   if (minesButton.disabled) return;
   setLoading(minesButton, true);
-  minesStatus.textContent = "Выбираем клетки…";
+  minesStatus.textContent = "Eligiendo casillas…";
   const cells = [...minesBoard.children];
   cells.forEach((cell, index) => {
     cell.classList.remove("safe");
     cell.textContent = String(index + 1);
-    cell.setAttribute("aria-label", `Клетка ${index + 1}`);
+    cell.setAttribute("aria-label", `Casilla ${index + 1}`);
   });
   window.setTimeout(() => {
     const selected = chooseUniqueCells(secureRandom() < 0.5 ? 1 : 2).sort((a,b) => a-b);
     selected.forEach(index => {
       cells[index].classList.add("safe");
       cells[index].innerHTML = gemMarkup + `<span class="cell-number">${index + 1}</span>`;
-      cells[index].setAttribute("aria-label", `Клетка ${index + 1}: алмаз`);
+      cells[index].setAttribute("aria-label", `Casilla ${index + 1}: diamante`);
     });
-    minesStatus.textContent = `Клетки: ${selected.map(index => index + 1).join(" и ")} · ${selected.length} ${selected.length === 1 ? "алмаз" : "алмаза"}`;
+    minesStatus.textContent = `Casillas: ${selected.map(index => index + 1).join(" y ")} · ${selected.length} ${selected.length === 1 ? "diamante" : "diamantes"}`;
     setLoading(minesButton, false);
   }, 650);
 }
@@ -254,15 +254,15 @@ function runChickenSignal() {
   if (chickenButton.disabled) return;
   setLoading(chickenButton, true);
   chickenValue.textContent = "—";
-  chickenStatus.textContent = "Создаём маршрут…";
+  chickenStatus.textContent = "Generando ruta…";
   roadChicken.style.left = "0%";
   document.querySelectorAll(".road-step").forEach(step => step.classList.remove("reached"));
   window.setTimeout(() => {
     const steps = 1 + Math.floor(secureRandom() * 5);
     roadChicken.style.left = `${(steps - 1) * 20 + 1}%`;
     document.querySelectorAll(".road-step").forEach((step, index) => step.classList.toggle("reached", index < steps));
-    chickenValue.textContent = `${steps} ${steps === 1 ? "шаг" : steps < 5 ? "шага" : "шагов"}`;
-    chickenStatus.textContent = `Маршрут: шаг ${steps} из 5`;
+    chickenValue.textContent = `${steps} ${steps === 1 ? "paso" : "pasos"}`;
+    chickenStatus.textContent = `Ruta: paso ${steps} de 5`;
     setLoading(chickenButton, false);
   }, 700);
 }
@@ -270,7 +270,7 @@ for (let i = 1; i <= 5; i++) {
   const step = document.createElement("span");
   step.className = "road-step";
   step.textContent = i;
-  step.setAttribute("aria-label", `Шаг ${i}`);
+  step.setAttribute("aria-label", `Paso ${i}`);
   document.querySelector("#roadTrack").appendChild(step);
 }
 chickenButton.addEventListener("click", runChickenSignal);
@@ -281,19 +281,19 @@ loginForm.addEventListener("submit", (event) => {
   playerIdInput.value = playerId;
 
   if (!playerId) {
-    showLoginError("Введите свой ID игрока 1xBet для продолжения.", false);
+    showLoginError("Ingresa tu ID de jugador 1xBet para continuar.", false);
     playerIdInput.focus();
     return;
   }
 
   if (playerId.length < PLAYER_ID_LENGTH) {
-    showLoginError(`ID состоит из ${PLAYER_ID_LENGTH} цифр — введено ${playerId.length}.`, false);
+    showLoginError(`El ID tiene ${PLAYER_ID_LENGTH} dígitos — ingresaste ${playerId.length}.`, false);
     playerIdInput.focus();
     return;
   }
 
   if (!KNOWN_PLAYER_IDS.includes(playerId)) {
-    showLoginError("Доступ заблокирован", true);
+    showLoginError("Acceso bloqueado", true);
     playerIdInput.focus();
     playerIdInput.select();
     return;
